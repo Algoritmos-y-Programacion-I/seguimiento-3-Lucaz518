@@ -1,15 +1,16 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import model.Computer;
 import model.Incident;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 /**
- * Clase que gestiona la lógica de negocio y los contenedores de datos.
+ * lógica de negocio y los contenedores de datos.
  */
 public class SchoolController {
 
@@ -24,7 +25,7 @@ public class SchoolController {
     }
 
     /**
-     * Inicializa las 50 computadoras (5 pisos * 10 computadoras).
+     * Inicializa los computadores
      */
     private void initializeComputers() {
         int count = 0;
@@ -40,7 +41,7 @@ public class SchoolController {
     }
 
     /**
-     * Busca una computadora por su hostname (serial).
+     * buscar el comp por nombre 
      */
     public Computer getComputerByHostname(String hostname) {
         return computerList.stream()
@@ -50,7 +51,7 @@ public class SchoolController {
     }
 
     /**
-     * Agrega una nueva computadora al sistema. (Opción 1)
+     * Agrega un nuevo computador
      */
     public boolean agregarComputador(String hostname, int floor, int row, int column) {
         if (getComputerByHostname(hostname) == null) {
@@ -60,9 +61,6 @@ public class SchoolController {
         return false;
     }
 
-    /**
-     * Reporta un nuevo incidente asociado a una computadora. (Opción 2)
-     */
     public Incident agregarIncidenteEnComputador(String hostname, String detail) {
         Computer computer = getComputerByHostname(hostname);
         
@@ -99,9 +97,6 @@ public class SchoolController {
         return worstFloor;
     }
 
-    /**
-     * Obtiene la lista de incidentes PENDIENTES del piso con más problemas. (Opción 3)
-     */
     public List<Incident> getIncidentsForWorstFloor() {
         int worstFloor = getWorstFloor();
         if (worstFloor == -1) {
@@ -112,24 +107,15 @@ public class SchoolController {
                 .filter(i -> i.getComputer().getFloor() == worstFloor && !i.isResolved())
                 .collect(Collectors.toList());
     }
-     
-    /**
-     * Obtiene la lista completa de computadoras.
-     */
+    
     public List<Computer> getComputerList() {
         return computerList;
     }
 
-    /**
-     * Obtiene la lista completa de incidentes.
-     */
     public List<Incident> getIncidentList() {
         return incidentList;
     }
     
-    /**
-     * Marca un incidente como resuelto.
-     */
     public boolean resolveIncident(int incidentId) {
         for (Incident i : incidentList) {
             if (i.getIncidentId() == incidentId && !i.isResolved()) {

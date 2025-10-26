@@ -1,9 +1,10 @@
 package ui;
 
 import controller.SchoolController;
+import model.Incident;
+
 import java.util.List;
 import java.util.Scanner;
-import model.Incident;
 
 public class SchoolApp {
 
@@ -25,8 +26,8 @@ public class SchoolApp {
 
         int option = 0;
         do {
-            System.out.println("MENU PRINCIPAL");
-            System.out.println("--------------------------------------------------------");
+            System.out.println("\nMenu Principal");
+            System.out.println("/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/");
             System.out.println("Digite alguna de las siguientes opciones");
             System.out.println("1) Registrar computador");
             System.out.println("2) Registrar incidente en computador");
@@ -56,14 +57,14 @@ public class SchoolApp {
                         listarIncidentesPendientes();
                         break;
                     case 0:
-                        System.out.println("gracias por usar nuestros servicios, Adios!");
+                        System.out.println("\nGracias por usar nuestros servicios. Adios!");
                         break;
                     default:
-                        System.out.println("Opcion invalida,intenta nuevamente.");
+                        System.out.println("\nOpcion invalida. Intente nuevamente.");
                         break;
                 }
             } else {
-                System.out.println("Entrada no valida. Por favor dijite un numero.");
+                System.out.println("\nEntrada no válida. Por favor, digite un número.");
                 input.nextLine();
                 option = -1;
             }
@@ -73,13 +74,13 @@ public class SchoolApp {
     }
 
     public void registrarComputador() {
-        System.out.println("/-/-/-/-/-/-/Registro de Computador/-/-/-/-/-/-/");
-        System.out.print("Ingrese el Nombre de Host: ");
+        System.out.println("\n--- Registro de Computador ---");
+        System.out.print("Ingrese Hostname (Serial): ");
         String hostname = input.nextLine();
 
-        System.out.print("Ingrese el piso,(1-5): ");
+        System.out.print("Ingrese Piso (1-5): ");
         if (!input.hasNextInt()) {
-            System.out.println("ERROR!! elpiso debe ser un numero entero (1-5)");
+            System.out.println("ERROR: El piso debe ser un número entero.");
             input.nextLine();
             return;
         }
@@ -105,24 +106,24 @@ public class SchoolApp {
         if (controller.agregarComputador(hostname, floor, row, column)) {
             System.out.println("Computador " + hostname + " registrado correctamente.");
         } else {
-            System.out.println("CUIDADO! ya esxiste un computador con el Hostname: " + hostname + ".");
+            System.out.println("ERROR: Ya existe un computador con el hostname " + hostname + ".");
         }
     }
 
     public void registrarIncidenteEnComputador() {
-        System.out.println("/-/-/-/-/Registro de Incidente/-/-/-/-/");
-        System.out.print("Ingresa el HostName del computador afectado: ");
+        System.out.println("\n--- Registro de Incidente ---");
+        System.out.print("Ingrese Hostname del computador afectado: ");
         String hostname = input.nextLine();
 
-        System.out.print("Ingreda la descripcion del Incidente: ");
+        System.out.print("Ingrese la descripción del incidente: ");
         String detail = input.nextLine();
 
         Incident incident = controller.agregarIncidenteEnComputador(hostname, detail);
 
         if (incident != null) {
-            System.out.println("El incidente #" + incident.getIncidentId() + " Esta reportado para: " + hostname + ".");
+            System.out.println("Incidente #" + incident.getIncidentId() + " reportado para " + hostname + ".");
         } else {
-            System.out.println("CUIDADO! el computador con el hostname: " + hostname + " No a sido encontrado.");
+            System.out.println("ERROR: El computador con Hostname " + hostname + " no fue encontrado.");
         }
     }
 

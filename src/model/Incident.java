@@ -2,9 +2,6 @@ package model;
 
 import java.time.LocalDateTime;
 
-/**
- * Clase que representa un incidente reportado en una Computadora.
- */
 public class Incident {
 
     private int incidentId;
@@ -21,7 +18,7 @@ public class Incident {
         this.computer = computer;
     }
 
-    /* Getters y Setters */
+    // Getters y Setters
 
     public int getIncidentId() {
         return incidentId;

@@ -1,8 +1,5 @@
 package model;
 
-/**
- * Clase que representa una computadora en el edificio.
- */
 public class Computer {
 
     private String hostname;
@@ -12,7 +9,7 @@ public class Computer {
 
     public Computer(String hostname, int floor, int row, int column) {
         this.hostname = hostname;
-        this floor = floor;
+        this.floor = floor;
         this.row = row;
         this.column = column;
     }
@@ -20,7 +17,7 @@ public class Computer {
     public Computer() {
     }
 
-    /* Getters y Setters */
+    // Getters y Setters
 
     public String getHostname() {
         return hostname;
