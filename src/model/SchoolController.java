@@ -10,10 +10,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * lógica de negocio y los contenedores de datos.
+ * Clase que gestiona la lógica de negocio y los contenedores de datos.
  */
 public class SchoolController {
 
+    /*
+     * ATENCION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * Agregue los atributos (relaciones) necesarios para satisfacer los
+     * requerimientos.
+     */
     private List<Computer> computerList;
     private List<Incident> incidentList;
     private int nextIncidentId = 1;
@@ -24,9 +29,6 @@ public class SchoolController {
         initializeComputers(); 
     }
 
-    /**
-     * Inicializa los computadores
-     */
     private void initializeComputers() {
         int count = 0;
         for (int floor = 1; floor <= 5; floor++) {
@@ -40,9 +42,6 @@ public class SchoolController {
         }
     }
 
-    /**
-     * buscar el comp por nombre 
-     */
     public Computer getComputerByHostname(String hostname) {
         return computerList.stream()
                 .filter(c -> c.getHostname().equalsIgnoreCase(hostname))
@@ -50,9 +49,13 @@ public class SchoolController {
                 .orElse(null);
     }
 
-    /**
-     * Agrega un nuevo computador
+    /*
+     * ATENCION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * Los siguientes metodos estan incompletos.
+     * Añada los metodos que considere hagan falta para satisfacer los
+     * requerimientos.
      */
+
     public boolean agregarComputador(String hostname, int floor, int row, int column) {
         if (getComputerByHostname(hostname) == null) {
             computerList.add(new Computer(hostname, floor, row, column));
@@ -72,9 +75,11 @@ public class SchoolController {
         return null;
     }
 
-    /**
-     * Encuentra el número de piso con la mayor cantidad de incidentes PENDIENTES.
-     */
+    public List<Computer> getComputerList() {
+        return computerList;
+    }
+    
+    // Método para la Opción 3 (Consulta de piso con más problemas)
     public int getWorstFloor() {
         Map<Integer, Integer> floorIncidentCounts = new HashMap<>();
 
@@ -107,11 +112,8 @@ public class SchoolController {
                 .filter(i -> i.getComputer().getFloor() == worstFloor && !i.isResolved())
                 .collect(Collectors.toList());
     }
-    
-    public List<Computer> getComputerList() {
-        return computerList;
-    }
-
+     
+    // Método auxiliar para la vista
     public List<Incident> getIncidentList() {
         return incidentList;
     }

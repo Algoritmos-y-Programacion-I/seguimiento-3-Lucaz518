@@ -8,26 +8,41 @@ import java.util.Scanner;
 
 public class SchoolApp {
 
+    /*
+     * ATENCION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * Agregue los atributos (relaciones) necesarios para conectar esta clase con el
+     * modelo.
+     */
     private SchoolController controller;
     private Scanner input;
 
     public static void main(String[] args) {
+
         SchoolApp ui = new SchoolApp();
         ui.menu();
+
     }
 
+    // Constructor
     public SchoolApp() {
         input = new Scanner(System.in);
-        controller = new SchoolController(); 
+        controller = new SchoolController();
     }
 
+    /*
+     * ATENCION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * El siguiente metodo esta incompleto.
+     * Agregue la logica necesaria (instrucciones) para satisfacer los
+     * requerimientos
+     */
     public void menu() {
+
         System.out.println("Bienvenido a Computaricemos");
 
         int option = 0;
         do {
             System.out.println("\nMenu Principal");
-            System.out.println("/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/");
+            System.out.println("/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/");
             System.out.println("Digite alguna de las siguientes opciones");
             System.out.println("1) Registrar computador");
             System.out.println("2) Registrar incidente en computador");
@@ -39,7 +54,7 @@ public class SchoolApp {
             if (input.hasNextInt()) {
                 option = input.nextInt();
                 input.nextLine();
-                
+
                 switch (option) {
                     case 1:
                         registrarComputador();
@@ -48,7 +63,7 @@ public class SchoolApp {
                         registrarIncidenteEnComputador();
                         break;
                     case 3:
-                        consultarComputadorConMasIncidentes(); 
+                        consultarComputadorConMasIncidentes();
                         break;
                     case 4:
                         marcarIncidenteResuelto();
@@ -73,8 +88,15 @@ public class SchoolApp {
 
     }
 
+    /*
+     * ATENCION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * Los siguientes metodos estan incompletos.
+     * Agregue la logica necesaria (instrucciones) para satisfacer los
+     * requerimientos
+     */
+
     public void registrarComputador() {
-        System.out.println("\n--- Registro de Computador ---");
+        System.out.println("Registro de Computador");
         System.out.print("Ingrese Hostname (Serial): ");
         String hostname = input.nextLine();
 
@@ -111,7 +133,7 @@ public class SchoolApp {
     }
 
     public void registrarIncidenteEnComputador() {
-        System.out.println("\n--- Registro de Incidente ---");
+        System.out.println("Registro de Incidente");
         System.out.print("Ingrese Hostname del computador afectado: ");
         String hostname = input.nextLine();
 
@@ -144,8 +166,9 @@ public class SchoolApp {
         }
     }
 
+    // Funcionalidad adicional para la vista
     public void marcarIncidenteResuelto() {
-        System.out.println("\n--- Marcar Incidente como Resuelto ---");
+        System.out.println("Marcar Incidente como Resuelto");
         System.out.print("Ingrese el ID del incidente a resolver: ");
         
         if (input.hasNextInt()) {
@@ -163,8 +186,9 @@ public class SchoolApp {
         }
     }
     
+    // Funcionalidad adicional para la vista
     public void listarIncidentesPendientes() {
-        System.out.println("\n--- Incidentes PENDIENTES ---");
+        System.out.println("Incidentes PENDIENTES");
         
         List<Incident> allIncidents = controller.getIncidentList();
         boolean foundPending = false;

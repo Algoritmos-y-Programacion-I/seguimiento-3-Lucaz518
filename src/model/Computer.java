@@ -1,7 +1,15 @@
 package model;
 
+/**
+ * Clase que representa una Computadora en el edificio.
+ */
 public class Computer {
 
+    /*
+     * ATENCION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * Agregue los atributos (relaciones) necesarios para satisfacer los
+     * requerimientos.
+     */
     private String hostname;
     private int floor;
     private int row;
@@ -15,10 +23,20 @@ public class Computer {
     }
 
     public Computer() {
+
+    }
+
+    /*
+     * ATENCION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * El siguiente metodo esta incompleto.
+     * Agregue los parametros y retorno que sean pertinentes.
+     * Agregue la logica necesaria.
+     */
+    public void addIncident() {
+        // NOTA: Se omite la lógica aquí, ya que la gestión se centraliza en SchoolController e Incident.
     }
 
     // Getters y Setters
-
     public String getHostname() {
         return hostname;
     }
